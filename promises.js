@@ -1,3 +1,5 @@
+const { promises } = require("fs")
+
 function getUsers() {
   return new Promise((resolve, reject) => {
     // We simulate an async xhr call with setTimeout
@@ -24,3 +26,12 @@ function createUsers(users) {
 }
 
 // Votre code ici (8 lignes)
+
+getUsers()
+.then(createUsers)
+.then((users => {
+  return Promise.all(users)
+}))
+.then(() => {
+  console.log('All users created')
+})
